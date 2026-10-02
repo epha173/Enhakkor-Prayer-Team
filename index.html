@@ -1,0 +1,1047 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Prayer Team | Hayole Project Fellowship</title>
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      background: #f5f7fb;
+      color: #172033;
+      line-height: 1.7;
+    }
+
+    header {
+      min-height: 100vh;
+      background:
+        linear-gradient(rgba(10, 24, 48, 0.82), rgba(10, 24, 48, 0.88)),
+        url("https://images.unsplash.com/photo-1504052434569-70ad5836ab65?auto=format&fit=crop&w=1600&q=80")
+        center/cover;
+      color: white;
+      display: flex;
+      flex-direction: column;
+    }
+
+    nav {
+      width: 100%;
+      padding: 20px 6%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(5, 15, 30, 0.85);
+      backdrop-filter: blur(10px);
+    }
+
+    .logo {
+      font-size: 22px;
+      font-weight: bold;
+      color: #ffd166;
+    }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 20px;
+    }
+
+    nav a {
+      color: white;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    nav a:hover {
+      color: #ffd166;
+    }
+
+    .hero {
+      flex: 1;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 30px;
+    }
+
+    .hero-content {
+      max-width: 850px;
+    }
+
+    .hero h1 {
+      font-size: clamp(40px, 7vw, 75px);
+      margin-bottom: 20px;
+    }
+
+    .hero p {
+      font-size: 20px;
+      margin-bottom: 30px;
+    }
+
+    .button {
+      display: inline-block;
+      padding: 14px 24px;
+      border-radius: 30px;
+      background: #ffd166;
+      color: #172033;
+      text-decoration: none;
+      font-weight: bold;
+      border: none;
+      cursor: pointer;
+      margin: 5px;
+    }
+
+    .button:hover {
+      transform: translateY(-2px);
+      opacity: 0.9;
+    }
+
+    section {
+      padding: 80px 7%;
+    }
+
+    .section-title {
+      text-align: center;
+      margin-bottom: 45px;
+    }
+
+    .section-title h2 {
+      font-size: 38px;
+      margin-bottom: 10px;
+    }
+
+    .section-title p {
+      color: #64748b;
+    }
+
+    .container {
+      max-width: 1100px;
+      margin: auto;
+    }
+
+    .card-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
+      gap: 25px;
+    }
+
+    .card {
+      background: white;
+      padding: 30px;
+      border-radius: 18px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.07);
+    }
+
+    .card h3 {
+      margin-bottom: 15px;
+      color: #173b68;
+    }
+
+    .icon {
+      font-size: 42px;
+      margin-bottom: 15px;
+    }
+
+    .verse {
+      background: linear-gradient(135deg, #173b68, #254f7e);
+      color: white;
+      border-radius: 25px;
+      padding: 50px;
+      text-align: center;
+      box-shadow: 0 15px 40px rgba(23,59,104,0.2);
+    }
+
+    .verse p {
+      font-size: 25px;
+      font-style: italic;
+      margin-bottom: 20px;
+    }
+
+    .verse strong {
+      color: #ffd166;
+    }
+
+    .lesson {
+      background: #eef4fa;
+    }
+
+    .lesson-box {
+      background: white;
+      padding: 35px;
+      border-left: 6px solid #173b68;
+      border-radius: 12px;
+      margin-bottom: 20px;
+    }
+
+    .people {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
+      gap: 25px;
+    }
+
+    .person {
+      overflow: hidden;
+      background: white;
+      border-radius: 18px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+    }
+
+    .person img {
+      width: 100%;
+      height: 250px;
+      object-fit: cover;
+    }
+
+    .person-content {
+      padding: 25px;
+    }
+
+    .video-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 30px;
+    }
+
+    .video {
+      background: white;
+      padding: 15px;
+      border-radius: 18px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+    }
+
+    .video iframe {
+      width: 100%;
+      height: 230px;
+      border: none;
+      border-radius: 12px;
+    }
+
+    .schedule {
+      width: 100%;
+      border-collapse: collapse;
+      background: white;
+      border-radius: 15px;
+      overflow: hidden;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.07);
+    }
+
+    .schedule th,
+    .schedule td {
+      padding: 18px;
+      border-bottom: 1px solid #e5e7eb;
+      text-align: left;
+    }
+
+    .schedule th {
+      background: #173b68;
+      color: white;
+    }
+
+    .alarm {
+      background: linear-gradient(135deg, #fff3c4, #ffe29a);
+      text-align: center;
+    }
+
+    .alarm-box {
+      max-width: 750px;
+      margin: auto;
+      background: white;
+      padding: 40px;
+      border-radius: 25px;
+      box-shadow: 0 15px 40px rgba(0,0,0,0.08);
+    }
+
+    .alarm-time {
+      font-size: 55px;
+      font-weight: bold;
+      color: #173b68;
+      margin: 15px;
+    }
+
+    .telegram {
+      background: #e9f5ff;
+      text-align: center;
+    }
+
+    .telegram a {
+      color: #087ea4;
+      font-weight: bold;
+    }
+
+    footer {
+      background: #0b1728;
+      color: white;
+      text-align: center;
+      padding: 45px 20px;
+    }
+
+    footer p {
+      margin: 8px;
+    }
+
+    @media (max-width: 750px) {
+      nav {
+        flex-direction: column;
+        gap: 15px;
+      }
+
+      nav ul {
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 10px;
+      }
+
+      section {
+        padding: 60px 5%;
+      }
+
+      .verse {
+        padding: 30px 20px;
+      }
+
+      .verse p {
+        font-size: 20px;
+      }
+
+      .schedule {
+        font-size: 14px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+<!-- =========================
+     HOME
+========================= -->
+
+<header id="home">
+
+  <nav>
+    <div class="logo">🙏 PRAYER TEAM</div>
+
+    <ul>
+      <li><a href="#home">Home</a></li>
+      <li><a href="#mission">Mission</a></li>
+      <li><a href="#vision">Vision</a></li>
+      <li><a href="#teaching">Teaching</a></li>
+      <li><a href="#prayer">Prayer</a></li>
+      <li><a href="#schedule">Schedule</a></li>
+    </ul>
+  </nav>
+
+  <div class="hero">
+    <div class="hero-content">
+
+      <h1>Prayer Changes Things</h1>
+
+      <p>
+        A community committed to seeking God, standing together in prayer,
+        studying His Word, and carrying the burden of prayer for others.
+      </p>
+
+      <a href="#mission" class="button">Discover Our Mission</a>
+      <a href="#prayer" class="button">Pray With Us</a>
+
+    </div>
+  </div>
+
+</header>
+
+
+<!-- =========================
+     MISSION
+========================= -->
+
+<section id="mission">
+
+  <div class="container">
+
+    <div class="section-title">
+      <h2>Our Mission</h2>
+      <p>Seeking God together through prayer and His Word.</p>
+    </div>
+
+    <div class="card-grid">
+
+      <div class="card">
+        <div class="icon">🙏</div>
+
+        <h3>A Life of Prayer</h3>
+
+        <p>
+          Our mission is to encourage believers to develop a consistent
+          life of prayer. We believe prayer is not simply an activity
+          reserved for difficult moments; it is a relationship with God
+          through which we seek His presence, wisdom, direction and will.
+        </p>
+      </div>
+
+      <div class="card">
+        <div class="icon">📖</div>
+
+        <h3>Standing on God's Word</h3>
+
+        <p>
+          We desire to build our prayer life on Scripture. Through Bible
+          study, teaching and prayer, we encourage one another to understand
+          God's promises and respond to His Word with faith, obedience and
+          humility.
+        </p>
+      </div>
+
+      <div class="card">
+        <div class="icon">🤝</div>
+
+        <h3>Praying for Others</h3>
+
+        <p>
+          We also carry one another in prayer. We pray for families,
+          churches, communities, students, leaders and people who need
+          encouragement. Our desire is to become a praying community that
+          faithfully intercedes for others.
+        </p>
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- =========================
+     VISION
+========================= -->
+
+<section id="vision">
+
+  <div class="container">
+
+    <div class="section-title">
+      <h2>Our Vision</h2>
+      <p>To become a community shaped by prayer.</p>
+    </div>
+
+    <div class="card">
+
+      <h3>Our Vision for the Future</h3>
+
+      <p>
+        We envision a generation that knows God personally and understands
+        the importance of prayer. We want young people and believers to
+        discover that prayer is not merely a religious routine but a
+        meaningful conversation with God that shapes character, decisions
+        and everyday life.
+      </p>
+
+      <br>
+
+      <p>
+        We also envision a united prayer community where people encourage
+        one another to remain faithful. Through regular prayer meetings,
+        Scripture-based teaching, prayer reminders and fellowship, we want
+        to help create a culture in which seeking God becomes a natural
+        and consistent part of life.
+      </p>
+
+      <br>
+
+      <p>
+        Our ultimate desire is to see the Prayer Team serve faithfully
+        within Hayole Project Fellowship and contribute to its spiritual
+        life through prayer, unity, service and biblical encouragement.
+      </p>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- =========================
+     BIBLE VERSE
+========================= -->
+
+<section>
+
+  <div class="container">
+
+    <div class="verse">
+
+      <p>
+        "Pray without ceasing."
+      </p>
+
+      <strong>1 Thessalonians 5:17</strong>
+
+      <br><br>
+
+      <p style="font-size:17px;">
+        Prayer is not only something we do at a particular meeting.
+        It is a lifestyle of continually turning our hearts toward God.
+      </p>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- =========================
+     TEACHING
+========================= -->
+
+<section id="teaching" class="lesson">
+
+  <div class="container">
+
+    <div class="section-title">
+      <h2>Bible-Based Teaching</h2>
+      <p>Lessons for developing a deeper prayer life.</p>
+    </div>
+
+    <div class="lesson-box">
+
+      <h3>Lesson 1 — Pray With Faith</h3>
+
+      <p>
+        Biblical prayer is an expression of trust in God. When we pray,
+        we acknowledge that God knows what we need and that His wisdom is
+        greater than ours. Faith does not mean that we demand a particular
+        answer from God. Instead, faith teaches us to bring our requests
+        honestly before Him while trusting His character and wisdom.
+      </p>
+
+      <br>
+
+      <p>
+        Jesus taught His disciples to pray with confidence in God's care.
+        Therefore, when we pray, we should not approach God only because
+        we are afraid or desperate. We can approach Him because He is our
+        Father and because He invites us to seek Him.
+      </p>
+
+    </div>
+
+
+    <div class="lesson-box">
+
+      <h3>Lesson 2 — Pray According to God's Will</h3>
+
+      <p>
+        Prayer is not about making God follow our plans. Prayer also changes
+        the person who prays. As we spend time with God and study Scripture,
+        our desires can become increasingly aligned with His purposes.
+      </p>
+
+      <br>
+
+      <p>
+        Jesus demonstrated this attitude when He prayed in the garden,
+        submitting His desire to the Father's will. A mature prayer life
+        therefore includes both asking and surrendering. We can tell God
+        what we desire while remaining willing to trust His answer.
+      </p>
+
+    </div>
+
+
+    <div class="lesson-box">
+
+      <h3>Lesson 3 — Pray for Others</h3>
+
+      <p>
+        Scripture repeatedly presents prayer as something believers do for
+        other people. Intercession teaches us to look beyond our own needs.
+        We can pray for our families, friends, churches, communities,
+        leaders and people who are experiencing difficulties.
+      </p>
+
+      <br>
+
+      <p>
+        When we pray for others, we become participants in a ministry of
+        encouragement. We may not always know what another person is
+        experiencing, but we can bring their needs before God and ask Him
+        to work according to His wisdom.
+      </p>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- =========================
+     PRAYER EXAMPLES
+========================= -->
+
+<section>
+
+  <div class="container">
+
+    <div class="section-title">
+
+      <h2>People Who Prayed</h2>
+
+      <p>
+        Biblical examples that encourage us to seek God.
+      </p>
+
+    </div>
+
+
+    <div class="people">
+
+
+      <!-- DANIEL -->
+
+      <div class="person">
+
+        <img
+          src="https://images.unsplash.com/photo-1507692049790-de58290a4334?auto=format&fit=crop&w=800&q=80"
+          alt="Daniel prayer illustration">
+
+        <div class="person-content">
+
+          <h3>Daniel</h3>
+
+          <p>
+            Daniel remained committed to prayer even when his circumstances
+            became dangerous. Scripture describes him continuing to pray
+            regularly toward Jerusalem. His example teaches us that prayer
+            should not disappear when pressure increases.
+          </p>
+
+          <br>
+
+          <p>
+            Daniel's prayer life was connected with his relationship with
+            God. He did not pray only when he needed something. Prayer was
+            already part of his daily life.
+          </p>
+
+          <br>
+
+          <strong>Daniel 6:10</strong>
+
+        </div>
+
+      </div>
+
+
+      <!-- HANNAH -->
+
+      <div class="person">
+
+        <img
+          src="https://images.unsplash.com/photo-1504150558240-0b4fd8946624?auto=format&fit=crop&w=800&q=80"
+          alt="Hannah prayer illustration">
+
+        <div class="person-content">
+
+          <h3>Hannah</h3>
+
+          <p>
+            Hannah brought her deep sorrow before God and prayed honestly.
+            Her story reminds us that prayer gives us a place to bring pain,
+            hopes and personal struggles before the Lord.
+          </p>
+
+          <br>
+
+          <p>
+            Hannah's story also teaches us about surrender. After bringing
+            her request to God, she continued forward trusting Him.
+          </p>
+
+          <br>
+
+          <strong>1 Samuel 1:10–18</strong>
+
+        </div>
+
+      </div>
+
+
+      <!-- NEHEMIAH -->
+
+      <div class="person">
+
+        <img
+          src="https://images.unsplash.com/photo-1490730141103-6cac27aaab94?auto=format&fit=crop&w=800&q=80"
+          alt="Nehemiah prayer illustration">
+
+        <div class="person-content">
+
+          <h3>Nehemiah</h3>
+
+          <p>
+            Nehemiah responded to the condition of Jerusalem with fasting
+            and prayer. Before taking action, he sought God and confessed
+            the sins of his people.
+          </p>
+
+          <br>
+
+          <p>
+            His example shows that prayer and action are not enemies.
+            Prayer can prepare us to act wisely and courageously.
+          </p>
+
+          <br>
+
+          <strong>Nehemiah 1:4–11</strong>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- =========================
+     PRAYER VIDEOS
+========================= -->
+
+<section id="prayer" class="lesson">
+
+  <div class="container">
+
+    <div class="section-title">
+
+      <h2>Prayer & Teaching Videos</h2>
+
+      <p>
+        Watch, learn and pray with us.
+      </p>
+
+    </div>
+
+
+    <div class="video-grid">
+
+
+      <!-- PASTOR VLAD -->
+
+      <div class="video">
+
+        <iframe
+          src="https://www.youtube.com/embed/nNyo7lREMq8"
+          title="Pastor Vlad prayer video"
+          allowfullscreen>
+        </iframe>
+
+        <h3>Pastor Vlad — Prayer</h3>
+
+        <p>
+          A resource for prayer, faith and spiritual growth.
+        </p>
+
+      </div>
+
+
+      <!-- DESTA LANGENA -->
+
+      <div class="video">
+
+        <iframe
+          src="https://www.youtube.com/embed/"
+          title="Desta Langena prayer video"
+          allowfullscreen>
+        </iframe>
+
+        <h3>Dr. Desta Langena — Prayer</h3>
+
+        <p>
+          Prayer and biblical encouragement.
+        </p>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- =========================
+     SCHEDULE
+========================= -->
+
+<section id="schedule">
+
+  <div class="container">
+
+    <div class="section-title">
+
+      <h2>Prayer Schedule</h2>
+
+      <p>Let us make prayer part of our rhythm.</p>
+
+    </div>
+
+
+    <table class="schedule">
+
+      <thead>
+
+        <tr>
+          <th>Meeting</th>
+          <th>Day</th>
+          <th>Time</th>
+          <th>Purpose</th>
+        </tr>
+
+      </thead>
+
+      <tbody>
+
+        <tr>
+          <td>General Prayer Meeting</td>
+          <td>Friday</td>
+          <td>6:00 AM</td>
+          <td>United prayer and fellowship</td>
+        </tr>
+
+        <tr>
+          <td>Personal Prayer</td>
+          <td>Every Day</td>
+          <td>According to your alarm</td>
+          <td>Personal devotion</td>
+        </tr>
+
+        <tr>
+          <td>Prayer Team</td>
+          <td>As scheduled</td>
+          <td>Announced</td>
+          <td>Intercession and service</td>
+        </tr>
+
+      </tbody>
+
+    </table>
+
+  </div>
+
+</section>
+
+
+<!-- =========================
+     ALARM
+========================= -->
+
+<section class="alarm">
+
+  <div class="alarm-box">
+
+    <div class="icon">⏰</div>
+
+    <h2>Join the Prayer Alarm</h2>
+
+    <p>
+      Become part of the prayer alarm community. When a prayer time is
+      given, set your alarm and faithfully fulfill the prayer time.
+    </p>
+
+    <div class="alarm-time">
+      6:00 AM
+    </div>
+
+    <p>
+      Our general meeting prayer is every Friday morning at 6:00 AM.
+    </p>
+
+    <br>
+
+    <button
+      class="button"
+      onclick="setPrayerAlarm()">
+
+      ⏰ Set My Prayer Alarm
+
+    </button>
+
+    <p id="alarmMessage" style="margin-top:20px;"></p>
+
+  </div>
+
+</section>
+
+
+<!-- =========================
+     TELEGRAM
+========================= -->
+
+<section class="telegram">
+
+  <div class="container">
+
+    <div class="section-title">
+
+      <h2>Join Our Telegram Community</h2>
+
+      <p>
+        Stay connected with prayer reminders, announcements and fellowship.
+      </p>
+
+    </div>
+
+
+    <div class="card">
+
+      <h3>Enhakkore Senior Community</h3>
+
+      <p>
+        Join the Enhakkore Senior Community through Telegram and remain
+        connected with the wider prayer community.
+      </p>
+
+      <br>
+
+      <a
+        class="button"
+        href="https://t.me/+1UiqH_pkZ545NDRk"
+        target="_blank">
+
+        Join Telegram
+
+      </a>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- =========================
+     HAYOLE PROJECT FELLOWSHIP
+========================= -->
+
+<section>
+
+  <div class="container">
+
+    <div class="section-title">
+
+      <h2>Prayer Team & Hayole Project Fellowship</h2>
+
+    </div>
+
+
+    <div class="card">
+
+      <p>
+        The Prayer Team is a dedicated prayer ministry serving within
+        <strong>Hayole Project Fellowship</strong>. We exist to encourage
+        believers to seek God together, pray for one another and support
+        the spiritual life of the fellowship through faithful intercession.
+      </p>
+
+      <br>
+
+      <p>
+        As a team, we value unity, Scripture, humility, consistency and
+        genuine love for people. Prayer is not separate from fellowship;
+        it is one of the ways we serve one another and seek God's direction
+        for the community.
+      </p>
+
+      <br>
+
+      <p>
+        Everyone who joins the Prayer Team is encouraged to participate
+        faithfully, respect the agreed prayer schedule and help create an
+        environment where people can grow in their relationship with God.
+      </p>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- =========================
+     FOOTER
+========================= -->
+
+<footer>
+
+  <h2>🙏 Prayer Team</h2>
+
+  <p>
+    Serving within Hayole Project Fellowship.
+  </p>
+
+  <p>
+    "Pray without ceasing." — 1 Thessalonians 5:17
+  </p>
+
+  <p>
+    © 2026 Prayer Team
+  </p>
+
+</footer>
+
+
+<!-- =========================
+     JAVASCRIPT
+========================= -->
+
+<script>
+
+function setPrayerAlarm() {
+
+  /*
+    Android SET_ALARM intent.
+
+    This asks Android to open its alarm interface
+    and prepare a 6:00 AM alarm.
+
+    Browser/device support can vary.
+  */
+
+  const alarmIntent =
+    "intent:#Intent;" +
+    "action=android.intent.action.SET_ALARM;" +
+    "S.android.intent.extra.alarm.HOUR=6;" +
+    "S.android.intent.extra.alarm.MINUTES=0;" +
+    "S.android.intent.extra.alarm.MESSAGE=Prayer Time;" +
+    "B.android.intent.extra.alarm.SKIP_UI=false;" +
+    "end";
+
+  document.getElementById("alarmMessage").textContent =
+    "Opening your alarm app...";
+
+  window.location.href = alarmIntent;
+
+}
+
+</script>
+
+</body>
+</html>
